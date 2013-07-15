@@ -1,4 +1,4 @@
-AngularJS Tamplate
+AngularJS Template
 ==================
 
 Basic template with my personal setup for angularJS based single page applications
