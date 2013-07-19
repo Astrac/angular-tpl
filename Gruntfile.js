@@ -29,6 +29,14 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
+      ts: {
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.ts'],
+        tasks: ['ts:dist']
+      },
+      tsTest: {
+        files: ['test/spec/{,*/}*.ts'],
+        tasks: ['ts:test']
+      },
       less: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
         tasks: ['less']
@@ -126,6 +134,26 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'test/spec',
           src: '{,*/}*.coffee',
+          dest: '.tmp/spec',
+          ext: '.js'
+        }]
+      }
+    },
+    ts: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts',
+          src: '{,*/}*.ts',
+          dest: '.tmp/scripts',
+          ext: '.js'
+        }]
+      },
+      test: {
+        files: [{
+          expand: true,
+          cwd: 'test/spec',
+          src: '{,*/}*.ts',
           dest: '.tmp/spec',
           ext: '.js'
         }]
@@ -271,6 +299,7 @@ module.exports = function (grunt) {
     'clean:server',
     'coffee:dist',
     'less',
+    'ts:dist',
     'livereload-start',
     'connect:livereload',
     'open',
@@ -281,6 +310,7 @@ module.exports = function (grunt) {
     'clean:server',
     'coffee',
     'less',
+    'ts:dist',
     'connect:test',
     'karma:unit'
   ]);
@@ -289,6 +319,7 @@ module.exports = function (grunt) {
     'clean:server',
     'coffee',
     'less',
+    'ts:dist',
     'connect:test',
     'karma:run'
   ]);
@@ -298,6 +329,7 @@ module.exports = function (grunt) {
     'jshint',
     'test',
     'coffee',
+    'ts:dist',
     'less',
     'useminPrepare',
     'imagemin',
